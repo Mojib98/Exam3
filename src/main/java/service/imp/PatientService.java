@@ -4,7 +4,9 @@ import Entity.*;
 import org.hibernate.SessionFactory;
 import repository.imp.PatientRepo;
 import service.PatientInterface;
+
 import java.util.List;
+
 public class PatientService implements PatientInterface {
     SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
     PatientRepo patientRepo = new PatientRepo();
@@ -16,7 +18,7 @@ public class PatientService implements PatientInterface {
             var t = session.getTransaction();
             try {
                 t.begin();
-                list=patientRepo.allClink();
+                list = patientRepo.allClink();
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -28,12 +30,12 @@ public class PatientService implements PatientInterface {
 
     @Override
     public List<Doctor> allDoctor() {
-        List<Doctor> list=null;
+        List<Doctor> list = null;
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
             try {
                 t.begin();
-                list=patientRepo.allDoctor();
+                list = patientRepo.allDoctor();
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -45,12 +47,12 @@ public class PatientService implements PatientInterface {
 
     @Override
     public List<Prescription> myPrescription(Integer id) {
-        List<Prescription> list=null;
+        List<Prescription> list = null;
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
             try {
                 t.begin();
-                list=patientRepo.myPrescription(id);
+                list = patientRepo.myPrescription(id);
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -140,7 +142,8 @@ public class PatientService implements PatientInterface {
         }
         return null;
     }
-    public Doctor findById(Integer id){
+
+    public Doctor findById(Integer id) {
         Doctor doctor = null;
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
@@ -155,16 +158,44 @@ public class PatientService implements PatientInterface {
         }
         return doctor;
     }
-    public Doctor changeTime(Doctor doctor){
-        if (doctor.getStartWork().isBefore(doctor.getEndWork())){
-            doctor.getStartWork().plusMinutes(15L);
-        }
-        else System.out.println("Time full");
-        return doctor;
-    }
-    public Patient findByIdP(Integer id){
-        return  null;
+
+    public Doctor changeTime(Doctor doctor) {
+        System.out.println(doctor.getStartWork().isBefore(doctor.getEndWork()));
+        if (doctor.getStartWork().isBefore(doctor.getEndWork())) {
+            doctor.changeTime();
+            chaneDoctorTime(doctor);
+        } else System.out.println("Time full");
+        return null;
     }
 
+    public Patient findByIdP(Integer id) {
+
+        try (var session = sessionFactory.getCurrentSession()) {
+            var t = session.getTransaction();
+            try {
+                t.begin();
+                return patientRepo.findByIdP(id);
+            } catch (Exception e) {
+                e.printStackTrace();
+                t.rollback();
+            }
+        }
+        return null;
     }
+
+    public void chaneDoctorTime(Doctor doctor) {
+        try (var session = sessionFactory.getCurrentSession()) {
+            var t = session.getTransaction();
+            try {
+                t.begin();
+                patientRepo.chaneDoctorTime(doctor);
+                t.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                t.rollback();
+            }
+        }
+    }
+
+}
 

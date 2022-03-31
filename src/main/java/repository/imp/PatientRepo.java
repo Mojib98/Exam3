@@ -91,9 +91,28 @@ public class PatientRepo implements patientRepo {
     }
     public Doctor findById(Integer id){
         var session = sessionFactory.getCurrentSession();
-
         Doctor doctor = null;
         doctor = session.find(Doctor.class,id);
+
         return doctor;
+    } public Patient findByIdP(Integer id){
+        var session = sessionFactory.getCurrentSession();
+
+        Patient patient = null;
+        patient = session.find(Patient.class,id);
+        return patient;
     }
-}
+    public void chaneDoctorTime(Doctor doctor){
+
+        var t = sessionFactory.getCurrentSession();
+
+        String hql="update Entity.Doctor set startWork =:new " +
+                "where id =:id";
+        var query =t.createQuery(hql);
+        query.setParameter("new",doctor.getStartWork().plusMinutes(15));
+        query.setParameter("id",doctor.getId());
+        query.executeUpdate();
+    }
+    }
+
+

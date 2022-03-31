@@ -33,4 +33,7 @@ public class Doctor extends BaseClass{
         this.endWork = endWork;
         this.clinicSet = clinicSet;
     }
+    public void changeTime(){
+        this.startWork.plusMinutes(15L);
+    }
 }

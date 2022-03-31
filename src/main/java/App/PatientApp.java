@@ -5,10 +5,7 @@ import Entity.Doctor;
 import Entity.Patient;
 import Entity.Visit;
 import service.imp.PatientService;
-
-import java.time.LocalTime;
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class PatientApp {
@@ -40,15 +37,16 @@ public class PatientApp {
         System.out.println("select doctor by id");
         int id=scanner.nextInt();
         Doctor doctor = setDocter(id);
-        doctor=patientService.changeTime(doctor);
-        Patient patient = findById(idP);
+        patientService.changeTime(doctor);
+        Patient patient = findByIdP();
         if (doctor!=null){
             Visit visit = new Visit(doctor,patient,doctor.getStartWork().minusMinutes(15L));
+            patientService.giveTime(visit);
 
-        }
+        }else System.out.println("can't");
     }
-    public Patient findById(){
-        Pcanatient patient = patientService.findByIdP(this.idP);
+    public Patient findByIdP(){
+        Patient patient = patientService.findByIdP(1);
         return patient;
     }
 }
