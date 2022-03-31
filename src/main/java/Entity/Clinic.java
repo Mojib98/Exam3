@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -18,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Clinic extends BaseClass{
     private String nameClinic;
-    @OneToMany(mappedBy ="clinicSet" )
+    @OneToMany(mappedBy ="clinicSet",fetch = FetchType.EAGER)
     private List<Doctor> doctor;
 
     public Clinic(Integer id, String nameClinic) {

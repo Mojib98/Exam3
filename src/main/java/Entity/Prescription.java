@@ -23,5 +23,17 @@ public class Prescription extends BaseClass{
     private Date date;
     private Boolean expired;
 
+    public Prescription(Integer id, Boolean expired) {
+        super(id);
+        this.expired = expired;
+    }
 
+    public Prescription(Integer id, String medical, Patient patient, Doctor doctor, Date date, Boolean expired) {
+        super(id);
+        this.medical = medical;
+        this.patient = patient;
+        this.doctor = doctor;
+        this.date = date;
+        this.expired = expired;
+    }
 }

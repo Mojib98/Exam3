@@ -18,9 +18,9 @@ public class Menu {
         int sec= scanner.nextInt();
         if (sec==1){
             System.out.println("insert name");
-            String name = scanner.next().trim();
+            String name = scanner.next();
             System.out.println("insert pass");
-            String pass = scanner.next().trim();
+            String pass = scanner.next();
             if(checkAdmin(name,pass)){
                 admin();
             }
@@ -50,7 +50,7 @@ public class Menu {
     private void admin(){
         SecretaryApp secretaryApp = new SecretaryApp();
         boolean isRun=true;
-        while (isRun)
+        while (isRun){
         System.out.println(
                 "\tfor add doctor insert 1\n" +
                 "\tfor add clinic insert 2\n" +
@@ -58,7 +58,7 @@ public class Menu {
                 "\tfor see All clinic insert 4\n" +
                 "\tfor see All patient insert 5\n" +
                 "\tfor see All visit insert 6\n" +
-                "\tfor see All prescription insert 7\n");
+                "\tfor see All prescription insert 7");
         int section=scanner.nextInt();
         switch (section){
             case 1:
@@ -83,6 +83,7 @@ public class Menu {
             case 8:
                 isRun=false;
         }
+    }
     }
     private void patient(){
         patientApp.setIdP(this.id);

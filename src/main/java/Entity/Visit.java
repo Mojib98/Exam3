@@ -7,9 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import java.sql.Time;
 import java.time.LocalTime;
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,4 +20,12 @@ public class Visit extends BaseClass {
     @ManyToOne(fetch = FetchType.EAGER)
     private Patient patient;
     private LocalTime time;
+
+    public Visit(Integer id, Doctor doctor, Patient patient, LocalTime time) {
+        super(id);
+        this.doctor = doctor;
+        this.patient = patient;
+        this.time = time;
+    }
+
 }
