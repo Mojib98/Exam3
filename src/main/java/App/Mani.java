@@ -7,7 +7,9 @@ public class Mani {
 /*        SecretaryApp secretaryApp = new SecretaryApp();
         secretaryApp.addClinic();
         secretaryApp.addDoctor();*/
-        PatientApp patientApp = new PatientApp();
-        patientApp.getTime(1);
+       /* PatientApp patientApp = new PatientApp();
+        patientApp.getTime(1);*/
+        SecretaryApp secretaryApp = new SecretaryApp();
+        secretaryApp.seeAllVisit();
     }
 }

@@ -125,18 +125,20 @@ public class SecretaryService implements secretary {
         }
         return list;
     }
-    public List<Visit> showAllVisit() {
+    public  List<Visit> showAllVisit() {
+        List<Visit> list = null;
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
             try {
                 t.begin();
+                list = secretaryRepository.allVisit();
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();
                 t.rollback();
             }
         }
-        return null;
+        return list;
     }
     public List<Prescription> showAllPrescription() {
         List<Prescription> list  = null;

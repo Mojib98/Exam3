@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import java.sql.Time;
@@ -16,9 +17,9 @@ import java.time.LocalTime;
 @Getter
 @Entity
 public class Visit extends BaseClass {
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Doctor doctor;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Patient patient;
     private LocalTime time;
 }

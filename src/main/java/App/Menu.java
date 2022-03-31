@@ -37,6 +37,8 @@ public class Menu {
                 secretaryApp.seeAllPatient();
                 break;
             case 6:
+                secretaryApp.seeAllVisit();
+                break;
             case 7:
             case 8:
                 isRun=false;

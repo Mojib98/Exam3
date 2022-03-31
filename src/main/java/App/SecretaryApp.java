@@ -1,8 +1,6 @@
 package App;
 
-import Entity.Clinic;
-import Entity.Doctor;
-import Entity.Patient;
+import Entity.*;
 import service.imp.SecretaryService;
 
 import java.time.LocalTime;
@@ -46,11 +44,32 @@ public class SecretaryApp {
 
     }
     public void seeAllPatient(){
-        List<Patient> list = secretaryService
-
+        List<Patient> list = secretaryService.showAllPatient();
+        if (list!=null){
+            list.forEach(System.out::println);
+        }
+    }
+    public void seeAllDoctor(){
+        List<Doctor> list = secretaryService.showAllDoctor();
+        if (list!=null){
+            list.forEach(System.out::println);
+        }
+    }
+    public void seeAllClinic(){
+        List<Clinic> list = secretaryService.showAllClinic();
+        if (list!=null){
+            list.forEach(System.out::println);
+        }
 
     }
-    public void seeAllDoctor(){}
-    public void seeAllClinic(){}
-    public void seeAllVisit(){}
+    public void seeAllVisit(){
+        List<Visit> list = secretaryService.showAllVisit();
+        for(Visit v:list){
+            System.out.println(v.getDoctor().getName()+" "+v.getPatient().getName()+
+                    " "+v.getTime());
+        }
+        if (list!=null){
+            list.forEach(System.out::println);
+        }
+    }
 }
