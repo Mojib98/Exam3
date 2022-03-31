@@ -22,14 +22,20 @@ public class DoctorApp {
     }
 
     public void seeVisit() {
-        List<Visit> list = doctorService.seeVisit();
-        for (Visit v : list) {
-            System.out.println(v.getDoctor().getName() + " " + v.getPatient().getName() +
-                    " " + v.getTime());
+        try {
+            List<Visit> list = doctorService.seeVisit();
+
+            for (Visit v : list) {
+                System.out.println(v.getDoctor().getName() + " " + v.getPatient().getName() +
+                        " " + v.getTime());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     public void writePrescription() {
+        try{
         System.out.println("select id number patient");
         int idP = scanner.nextInt();
         List<Visit> list = doctorService.seeVisit();
@@ -48,15 +54,20 @@ public class DoctorApp {
             doctorService.writePrescription(prescription);
         } else System.out.println("cant");
 
-    }
+    }catch (Exception e){
+            e.printStackTrace();
+        }}
+
 
     public void seePrescription() {
-        List<Prescription> list = null;
+   try{     List<Prescription> list = null;
         list=doctorService.seePrescription();
         if (list !=null){
             list.forEach(System.out::println);
         }
-    }
+    }catch (Exception e){
+       e.printStackTrace();
+   }}
 
     public void modifyPrescription() {
 
