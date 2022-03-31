@@ -16,6 +16,7 @@ public class SecretaryService implements secretary {
             var t = session.getTransaction();
             try {
                 t.begin();
+
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();

@@ -18,10 +18,10 @@ import java.util.Set;
 public class Doctor extends BaseClass{
     private String name,specialty;
     private Integer capacity;
+    private LocalTime startWork;
+    private LocalTime endWork;
     @ManyToOne
     private Clinic clinicSet;
     @OneToMany(mappedBy = "doctor")
     private Set<Prescription> prescriptions;
-    private LocalTime startWork;
-    private LocalTime endWork;
 }

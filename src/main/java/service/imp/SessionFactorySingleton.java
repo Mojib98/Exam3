@@ -1,5 +1,6 @@
 package service.imp;
 
+import Entity.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -21,7 +22,13 @@ public class SessionFactorySingleton {
             // SessionFactory is thread safe.
             // SessionFactory is immutable.
             INSTANCE = new MetadataSources(registry)
-//                    .addAnnotatedClass()
+                    .addAnnotatedClass(Patient.class)
+                    .addAnnotatedClass(Doctor.class)
+                    .addAnnotatedClass(Secretary.class)
+                    .addAnnotatedClass(Clinic.class)
+                    .addAnnotatedClass(Visit.class)
+                    .addAnnotatedClass(Prescription.class)
+                    .addAnnotatedClass(BaseClass.class)
                     .buildMetadata()
                     .buildSessionFactory();
         }
