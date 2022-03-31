@@ -11,7 +11,6 @@ import java.util.List;
 public class SecretaryService implements secretary {
     SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
     SecretaryRepository secretaryRepository = new SecretaryRepository();
-
     @Override
     public void add(BaseClass baseClass) {
         try (var session = sessionFactory.getCurrentSession()) {
@@ -26,7 +25,6 @@ public class SecretaryService implements secretary {
             }
         }
     }
-
     @Override
     public void modify(BaseClass baseClass) {
         try (var session = sessionFactory.getCurrentSession()) {
@@ -40,7 +38,6 @@ public class SecretaryService implements secretary {
             }
         }
     }
-
     @Override
     public void delete(BaseClass baseClass) {
         try (var session = sessionFactory.getCurrentSession()) {
@@ -55,7 +52,6 @@ public class SecretaryService implements secretary {
         }
 
     }
-
     @Override
     public List<BaseClass> showAll() {
         try (var session = sessionFactory.getCurrentSession()) {
@@ -70,7 +66,6 @@ public class SecretaryService implements secretary {
         }
         return null;
     }
-
     @Override
     public void addTime(LocalTime start, LocalTime end) {
         try (var session = sessionFactory.getCurrentSession()) {
@@ -85,10 +80,6 @@ public class SecretaryService implements secretary {
         }
 
     }
-
-
-
-
     public List<Clinic> showAllClinic() {
         List<Clinic> list = null;
         try (var session = sessionFactory.getCurrentSession()) {
