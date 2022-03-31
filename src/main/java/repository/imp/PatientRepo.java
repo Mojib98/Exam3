@@ -1,9 +1,6 @@
 package repository.imp;
 
-import Entity.Clinic;
-import Entity.Doctor;
-import Entity.Patient;
-import Entity.Prescription;
+import Entity.*;
 import org.hibernate.SessionFactory;
 import repository.patientRepo;
 import service.imp.SessionFactorySingleton;
@@ -76,11 +73,12 @@ public class PatientRepo implements patientRepo {
     }
 
     @Override
-    public void giveTime(Doctor doctor) {
+    public void giveTime(Visit visit) {
         var session = sessionFactory.getCurrentSession();
-
+        session.save(visit);
 
     }
+    @Override
     public Patient info(Integer id){
         Patient patient=null;
         var session = sessionFactory.getCurrentSession();

@@ -1,9 +1,6 @@
 package service.imp;
 
-import Entity.Clinic;
-import Entity.Doctor;
-import Entity.Patient;
-import Entity.Prescription;
+import Entity.*;
 import org.hibernate.SessionFactory;
 import service.PatientInterface;
 
@@ -60,7 +57,7 @@ public class patientService implements PatientInterface {
     }
 
     @Override
-    public void giveTime(Doctor doctor) {
+    public void giveTime(Visit visit) {
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
             try {
