@@ -1,14 +1,15 @@
 package service.imp;
 
+import Entity.Prescription;
 import Entity.Visit;
 import org.hibernate.SessionFactory;
+import repository.imp.DoctorRepository;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 public class DoctorService {
     SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
-
+    DoctorRepository doctorRepository = new DoctorRepository();
     private Integer id;
 
     public List<Visit> seeVisit() {
@@ -28,11 +29,12 @@ public class DoctorService {
 
 
 
-    public void writePrescription() {
+    public void writePrescription(Prescription prescription) {
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
             try {
                 t.begin();
+                doctorRepository.writePrescription(prescription);
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -41,12 +43,13 @@ public class DoctorService {
         }
     }
 
-    public List<Predicate> seePrescription() {
-        List<Predicate> list = null;
+    public List<Prescription> seePrescription() {
+        List<Prescription> list = null;
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
             try {
                 t.begin();
+                list=doctorRepository.seePrescription(this.id);
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -56,11 +59,12 @@ public class DoctorService {
         return list;
     }
 
-    public void modifyPrescription() {
+    public void modifyPrescription(Prescription prescription) {
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
             try {
                 t.begin();
+                doctorRepository.modifyPrescription(prescription);
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();
