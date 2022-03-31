@@ -212,5 +212,18 @@ public class PatientService implements PatientInterface {
         }
         return list;
     }
+    public void cancel(Integer id,Integer patientId){
+        try (var session = sessionFactory.getCurrentSession()) {
+            var t = session.getTransaction();
+            try {
+                t.begin();
+                patientRepo.cancel(id,patientId);
+                t.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                t.rollback();
+            }
+        }
+    }
 }
 
