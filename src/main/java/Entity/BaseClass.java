@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @MappedSuperclass
-public class BaseClass {
+public abstract class BaseClass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
