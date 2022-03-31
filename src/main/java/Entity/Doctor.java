@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import java.time.LocalTime;
 import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,4 +22,6 @@ public class Doctor extends BaseClass{
     private Clinic clinicSet;
     @OneToMany(mappedBy = "doctor")
     private Set<Prescription> prescriptions;
+    private LocalTime startWork;
+    private LocalTime endWork;
 }
