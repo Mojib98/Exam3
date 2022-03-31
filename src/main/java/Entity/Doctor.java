@@ -11,4 +11,6 @@ public class Doctor extends BaseClass{
     private Integer capacity;
     @ManyToOne
     private Clinic clinicSet;
+    @OneToMany(mappedBy = "doctor")
+    private Set<Prescription> prescriptions;
 }
