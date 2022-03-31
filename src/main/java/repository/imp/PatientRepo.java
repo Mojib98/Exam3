@@ -113,6 +113,16 @@ public class PatientRepo implements patientRepo {
         query.setParameter("id",doctor.getId());
         query.executeUpdate();
     }
+    public List<Visit> myVisit(Integer id){
+        List<Visit> list = null;
+        var session = sessionFactory.getCurrentSession();
+        String hql = " From Entit.Visit d " +
+                " where d.patient.id=:?";
+        var query = session.createQuery(hql,Visit.class);
+        query.setParameter("id",id);
+        list = query.getResultList();
+        return list;
+    }
     }
 
 

@@ -68,8 +68,6 @@ public class SecretaryApp {
             System.out.println(v.getDoctor().getName()+" "+v.getPatient().getName()+
                     " "+v.getTime());
         }
-        if (list!=null){
-            list.forEach(System.out::println);
-        }
+
     }
 }

@@ -3,9 +3,15 @@ package App;
 import java.util.Scanner;
 
 public class Menu {
+    private Integer id;
+    private String name;
     Scanner scanner = new Scanner(System.in);
+    PatientApp patientApp = new PatientApp();
     public void menu(){
 
+    }
+    public void singUp(){
+        patientApp.singUp();
     }
     private void admin(){
         SecretaryApp secretaryApp = new SecretaryApp();
@@ -42,6 +48,46 @@ public class Menu {
             case 7:
             case 8:
                 isRun=false;
+        }
+    }
+    private void patient(){
+        patientApp.setIdP(this.id);
+        boolean isRun=true;
+        while (isRun){
+            System.out.println("" +
+                    "\tfor see All doctor insert 1\n" +
+                    "\tfor see All clinic insert 2\n" +
+                    "\tfor see doctor of clinic insert 3\n" +
+                    "\tfor give time insert 4\n" +
+                    "for see All your time insert 5\n" +
+                    "for cancel your visit insert 6\n" +
+                    "for see All your prescription 7\n" +
+                    "for exit insert 8" +
+                    "");
+            int section=scanner.nextInt();
+            switch (section){
+                case 1:
+                    patientApp.seeAllDoctor();
+                    break;
+                case 2:
+                    patientApp.seeAllClinic();
+                    break;
+                case 3:
+
+                case 4:
+                    patientApp.seeAllDoctor();
+                    System.out.println("insert id doctor");
+                    int idD=scanner.nextInt();
+                    patientApp.getTime(idD);
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                    isRun=false;
+            }
+
+
+
         }
     }
 }

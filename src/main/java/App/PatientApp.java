@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PatientApp {
-    Integer idP;
+   private Integer idP;
     PatientService patientService = new PatientService();
     Scanner scanner = new Scanner(System.in);
     public void singUp(){
@@ -22,21 +22,23 @@ public class PatientApp {
     }
     public void seeAllDoctor(){
        List<Doctor> list= patientService.allDoctor();
-       list.forEach(System.out::println);
+        if (list!=null){
+            list.forEach(System.out::println);
+        }
     }
     public void seeAllClinic(){
         List<Clinic> list= patientService.allClink();
-        list.forEach(System.out::println);
+        if (list!=null){
+            list.forEach(System.out::println);
+        }
     }
-    public Doctor setDocter(Integer id){
+    private Doctor setDoctor(Integer id){
         Doctor doctor=null;
         doctor = patientService.findById(id);
         return doctor;
     }
     public void getTime(int ids){
-        System.out.println("select doctor by id");
-        int id=scanner.nextInt();
-        Doctor doctor = setDocter(id);
+        Doctor doctor = setDoctor(ids);
         patientService.changeTime(doctor);
         Patient patient = findByIdP();
         if (doctor!=null){
@@ -46,7 +48,19 @@ public class PatientApp {
         }else System.out.println("can't");
     }
     public Patient findByIdP(){
-        Patient patient = patientService.findByIdP(1);
+        Patient patient = patientService.findByIdP(this.idP);
         return patient;
     }
+    public void setIdP(Integer idP) {
+        this.idP = idP;
+    }
+    public void myVisit(){
+        List<Visit> list= patientService.myVisit(this.idP);
+        if (list!=null){
+            list.forEach(System.out::println);
+        }
+    }
+    public void cancelVisit(){}
+    public void doctorOfClinic(Integer id){}
+
 }

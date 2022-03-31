@@ -196,6 +196,21 @@ public class PatientService implements PatientInterface {
             }
         }
     }
+    public List<Visit> myVisit(Integer id){
 
+        List<Visit> list = null;
+        try (var session = sessionFactory.getCurrentSession()) {
+            var t = session.getTransaction();
+            try {
+                t.begin();
+                list = patientRepo.myVisit(id);
+                t.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                t.rollback();
+            }
+        }
+        return list;
+    }
 }
 
