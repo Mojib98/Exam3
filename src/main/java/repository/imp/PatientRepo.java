@@ -65,9 +65,14 @@ public class PatientRepo implements patientRepo {
 
     @Override
     public List<Prescription> myPrescription(Integer id) {
-        var session = sessionFactory.getCurrentSession();t
-
-        return null;
+        List<Prescription> list=null;
+        var session = sessionFactory.getCurrentSession();
+        String hql="from Entity.Prescription " +
+                "where patient.id=:id";
+        var query=session.createQuery(hql);
+        query.setParameter("id",id);
+        list=query.getResultList();
+        return list;
     }
 
     @Override
@@ -75,5 +80,15 @@ public class PatientRepo implements patientRepo {
         var session = sessionFactory.getCurrentSession();
 
 
+    }
+    public Patient info(Integer id){
+        Patient patient=null;
+        var session = sessionFactory.getCurrentSession();
+        String hql="select p.id ,p.name from Patient p " +
+                "where p.id=:id";
+        var query = session.createQuery(hql,Patient.class);
+        query.setParameter("id",id);
+        patient=query.getSingleResult();
+        return patient;
     }
 }
