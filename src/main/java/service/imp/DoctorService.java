@@ -19,6 +19,7 @@ public class DoctorService {
             var t = session.getTransaction();
             try {
                 t.begin();
+                list=doctorRepository.seeVisit(this.id);
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();

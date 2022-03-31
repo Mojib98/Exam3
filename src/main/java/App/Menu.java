@@ -1,15 +1,48 @@
 package App;
 
-import java.util.Scanner;
+import lombok.Setter;
 
+import java.util.Scanner;
+@Setter
 public class Menu {
     private Integer id;
     private String name;
     Scanner scanner = new Scanner(System.in);
     PatientApp patientApp = new PatientApp();
     DoctorApp doctorApp = new DoctorApp();
+    LogingApp app = new LogingApp();
     public void menu(){
-
+        System.out.println("\t if admin insert 1\n" +
+                "\tif doctor insert 2\n" +
+                "\tif patient insert 3");
+        int sec= scanner.nextInt();
+        if (sec==1){
+            System.out.println("insert name");
+            String name = scanner.next().trim();
+            System.out.println("insert pass");
+            String pass = scanner.next().trim();
+            if(checkAdmin(name,pass)){
+                admin();
+            }
+        }
+        else if (sec==2){
+            System.out.println("insert name");
+            String name=scanner.next().trim();
+            System.out.println("insert id");
+            this.id=scanner.nextInt();
+            if (app.doctor(name,id)){
+                doctor();
+            }
+        }
+        else if (sec==3){
+            System.out.println("insert name");
+            String name=scanner.next().trim();
+            System.out.println("insert id");
+            this.id=scanner.nextInt();
+            if (app.patient(name,id)){
+                patient();
+            }
+        }
     }
     public void singUp(){
         patientApp.singUp();
@@ -92,7 +125,7 @@ public class Menu {
         }
     }
     private void doctor(){
-        patientApp.setIdP(this.id);
+        doctorApp.setId(id);
         Boolean isRun=true;
         while (isRun){
             System.out.println(
@@ -105,10 +138,19 @@ public class Menu {
             int section = scanner.nextInt();
             switch (section){
                 case 1:
+                    doctorApp.seeVisit();
+                    break;
                 case 2:
+
                 case 3:
+                    doctorApp.writePrescription();
+                    break;
                 case 4:
+                    doctorApp.seePrescription();
+                    break;
                 case 5:
+                    doctorApp.writePrescription();
+                    break;
                 case 6:
                 case 7:
                     isRun=false;
@@ -119,4 +161,10 @@ public class Menu {
 
         }
     }
+    private Boolean checkAdmin(String name,String p){
+        if (name.equals("admin") & p.equals("admin"))
+            return true;
+        else return false;
+    }
+
 }

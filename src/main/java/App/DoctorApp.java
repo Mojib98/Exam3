@@ -44,7 +44,8 @@ public class DoctorApp {
         if (doctor != null & patient != null) {
             System.out.println("insert ");
             String pre = scanner.next().trim();
-            Prescription prescription = new Prescription(pre, patient, doctor, new Date(System.currentTimeMillis()), Boolean.FALSE)
+            Prescription prescription = new Prescription(pre, patient, doctor, new Date(System.currentTimeMillis()), Boolean.FALSE);
+            doctorService.writePrescription(prescription);
         } else System.out.println("cant");
 
     }
