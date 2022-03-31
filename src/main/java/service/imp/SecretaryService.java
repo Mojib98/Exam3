@@ -1,6 +1,6 @@
 package service.imp;
 
-import Entity.BaseClass;
+import Entity.*;
 import org.hibernate.SessionFactory;
 import repository.imp.SecretaryRepository;
 import service.secretary;
@@ -84,5 +84,81 @@ public class SecretaryService implements secretary {
             }
         }
 
+    }
+
+
+
+
+    public List<Clinic> showAllClinic() {
+        List<Clinic> list = null;
+        try (var session = sessionFactory.getCurrentSession()) {
+            var t = session.getTransaction();
+            try {
+                t.begin();
+                list=secretaryRepository.allClink();
+                t.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                t.rollback();
+            }
+        }
+        return list;
+    }
+    public List<Patient> showAllPatient() {
+        List<Patient> list = null;
+        try (var session = sessionFactory.getCurrentSession()) {
+            var t = session.getTransaction();
+            try {
+                t.begin();
+                list=secretaryRepository.allPatient();
+                t.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                t.rollback();
+            }
+        }
+        return list;
+    }
+    public List<Doctor> showAllDoctor() {
+        List<Doctor> list = null;
+        try (var session = sessionFactory.getCurrentSession()) {
+            var t = session.getTransaction();
+            try {
+                t.begin();
+                list=secretaryRepository.allDoctor();
+                t.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                t.rollback();
+            }
+        }
+        return list;
+    }
+    public List<Visit> showAllVisit() {
+        try (var session = sessionFactory.getCurrentSession()) {
+            var t = session.getTransaction();
+            try {
+                t.begin();
+                t.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                t.rollback();
+            }
+        }
+        return null;
+    }
+    public List<Prescription> showAllPrescription() {
+        List<Prescription> list  = null;
+        try (var session = sessionFactory.getCurrentSession()) {
+            var t = session.getTransaction();
+            try {
+                t.begin();
+                t.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                t.rollback();
+            }
+        }
+        return null;
     }
 }

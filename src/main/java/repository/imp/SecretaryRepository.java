@@ -47,8 +47,6 @@ public class SecretaryRepository implements Repository<BaseClass> {
         list=query.getResultList();
         return list;
     }
-
-
     public List<Doctor> allDoctor() {
         List<Doctor> list=null;
         var session = sessionFactory.getCurrentSession();

@@ -2,9 +2,11 @@ package App;
 
 import Entity.Clinic;
 import Entity.Doctor;
+import Entity.Patient;
 import service.imp.SecretaryService;
 
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -43,7 +45,11 @@ public class SecretaryApp {
 
 
     }
-    public void seeAllPatient(){}
+    public void seeAllPatient(){
+        List<Patient> list = secretaryService
+
+
+    }
     public void seeAllDoctor(){}
     public void seeAllClinic(){}
     public void seeAllVisit(){}
