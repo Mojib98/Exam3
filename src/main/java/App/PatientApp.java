@@ -93,6 +93,11 @@ public class PatientApp {
     }
 
     public void cancelVisit(int cancel) {
+       try {
+           patientService.cancel(cancel,this.idP);
+       }catch (Exception e){
+           e.printStackTrace();
+       }
     }
 
     public void doctorOfClinic(Integer id) {
