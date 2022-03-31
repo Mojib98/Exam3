@@ -21,7 +21,8 @@ public class Clinic extends BaseClass{
     @OneToMany(mappedBy ="clinicSet" )
     private List<Doctor> doctor;
 
-
-
-
+    public Clinic(Integer id, String nameClinic) {
+        super(id);
+        this.nameClinic = nameClinic;
+    }
 }

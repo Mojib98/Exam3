@@ -24,4 +24,13 @@ public class Doctor extends BaseClass{
     private Clinic clinicSet;
     @OneToMany(mappedBy = "doctor")
     private Set<Prescription> prescriptions;
+
+    public Doctor(String name, String specialty, Integer capacity, LocalTime startWork, LocalTime endWork, Clinic clinicSet) {
+        this.name = name;
+        this.specialty = specialty;
+        this.capacity = capacity;
+        this.startWork = startWork;
+        this.endWork = endWork;
+        this.clinicSet = clinicSet;
+    }
 }
