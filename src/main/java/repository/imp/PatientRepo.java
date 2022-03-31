@@ -116,8 +116,8 @@ public class PatientRepo implements patientRepo {
     public List<Visit> myVisit(Integer id){
         List<Visit> list = null;
         var session = sessionFactory.getCurrentSession();
-        String hql = " From Entit.Visit d " +
-                " where d.patient.id=:?";
+        String hql = "From Entity.Visit d " +
+                " where d.patient.id=:id";
         var query = session.createQuery(hql,Visit.class);
         query.setParameter("id",id);
         list = query.getResultList();
