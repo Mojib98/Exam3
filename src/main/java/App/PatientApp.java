@@ -16,7 +16,6 @@ public class PatientApp {
 
     public void singUp() {
         try {
-
             Patient patient = new Patient();
             System.out.println("please insert name");
             String name = scanner.next().trim();
@@ -93,7 +92,7 @@ public class PatientApp {
         }
     }
 
-    public void cancelVisit() {
+    public void cancelVisit(int cancel) {
     }
 
     public void doctorOfClinic(Integer id) {

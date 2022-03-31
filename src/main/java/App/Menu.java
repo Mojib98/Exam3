@@ -93,10 +93,10 @@ public class Menu {
                     "\tfor see All clinic insert 2\n" +
                     "\tfor see doctor of clinic insert 3\n" +
                     "\tfor give time insert 4\n" +
-                    "for see All your time insert 5\n" +
-                    "for cancel your visit insert 6\n" +
-                    "for see All your prescription 7\n" +
-                    "for exit insert 8" +
+                    "\tfor see All your time insert 5\n" +
+                    "\tfor cancel your visit insert 6\n" +
+                    "\tfor see All your prescription 7\n" +
+                    "\tfor exit insert 8" +
                     "");
             int section=scanner.nextInt();
             switch (section){
@@ -114,7 +114,13 @@ public class Menu {
                     int idD=scanner.nextInt();
                     patientApp.getTime(idD);
                 case 5:
+                    patientApp.myVisit();
+                    break;
                 case 6:
+                    patientApp.myVisit();
+                    System.out.println("please select by id");
+                    int cancel=scanner.nextInt();
+                    patientApp.cancelVisit(cancel);
                 case 7:
                 case 8:
                     isRun=false;

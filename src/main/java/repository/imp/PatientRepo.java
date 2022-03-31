@@ -123,6 +123,16 @@ public class PatientRepo implements patientRepo {
         list = query.getResultList();
         return list;
     }
+    public void cancel(int id,int pationId){
+        var session = sessionFactory.getCurrentSession();
+        String hql = " delete from Entity.Visit where  " +
+                "id = :id and patient.id =: idP";
+        var query = session.createQuery(hql);
+        query.setParameter("id",id);
+        query.setParameter("idP",pationId);
+        query.executeUpdate();
+
+    }
     }
 
 
