@@ -2,11 +2,12 @@ package service.imp;
 
 import Entity.Prescription;
 import Entity.Visit;
+import lombok.Setter;
 import org.hibernate.SessionFactory;
 import repository.imp.DoctorRepository;
 
 import java.util.List;
-
+@Setter
 public class DoctorService {
     SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
     DoctorRepository doctorRepository = new DoctorRepository();

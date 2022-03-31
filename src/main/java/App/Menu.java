@@ -7,6 +7,7 @@ public class Menu {
     private String name;
     Scanner scanner = new Scanner(System.in);
     PatientApp patientApp = new PatientApp();
+    DoctorApp doctorApp = new DoctorApp();
     public void menu(){
 
     }
@@ -84,6 +85,34 @@ public class Menu {
                 case 7:
                 case 8:
                     isRun=false;
+            }
+
+
+
+        }
+    }
+    private void doctor(){
+        patientApp.setIdP(this.id);
+        Boolean isRun=true;
+        while (isRun){
+            System.out.println(
+                    "\tfor see your visit insert 1\n" +
+                    "\tfor see your patient inset 2\n" +
+                    "\tfor insert prescription insert 3\n" +
+                    "\tfor see your prescription insert 4\n" +
+                    "\tfor modify prescription insert 5\n" +
+                    "\tfor see your information insert 6\n");
+            int section = scanner.nextInt();
+            switch (section){
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                    isRun=false;
+                    break;
             }
 
 
