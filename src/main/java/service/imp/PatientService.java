@@ -140,4 +140,31 @@ public class PatientService implements PatientInterface {
         }
         return null;
     }
-}
+    public Doctor findById(Integer id){
+        Doctor doctor = null;
+        try (var session = sessionFactory.getCurrentSession()) {
+            var t = session.getTransaction();
+            try {
+                t.begin();
+                doctor = patientRepo.findById(id);
+                t.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                t.rollback();
+            }
+        }
+        return doctor;
+    }
+    public Doctor changeTime(Doctor doctor){
+        if (doctor.getStartWork().isBefore(doctor.getEndWork())){
+            doctor.getStartWork().plusMinutes(15L);
+        }
+        else System.out.println("Time full");
+        return doctor;
+    }
+    public Patient findByIdP(Integer id){
+        return  null;
+    }
+
+    }
+

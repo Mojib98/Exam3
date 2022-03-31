@@ -89,4 +89,11 @@ public class PatientRepo implements patientRepo {
         patient=query.getSingleResult();
         return patient;
     }
+    public Doctor findById(Integer id){
+        var session = sessionFactory.getCurrentSession();
+
+        Doctor doctor = null;
+        doctor = session.find(Doctor.class,id);
+        return doctor;
+    }
 }
