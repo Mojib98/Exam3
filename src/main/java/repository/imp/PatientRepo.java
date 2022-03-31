@@ -57,7 +57,7 @@ public class PatientRepo implements patientRepo {
     public List<Doctor> allDoctor() {
         List<Doctor> list=null;
         var session = sessionFactory.getCurrentSession();
-        String hql="select d.id,d.name,d.startWork,d.endWork,d.specialty, from Doctor d";
+        String hql="select d.id,d.name,d.startWork,d.endWork,d.specialty from Doctor d";
         var query=session.createQuery(hql,Doctor.class);
         list=query.getResultList();
         return list;
@@ -65,7 +65,7 @@ public class PatientRepo implements patientRepo {
 
     @Override
     public List<Prescription> myPrescription(Integer id) {
-        var session = sessionFactory.getCurrentSession();
+        var session = sessionFactory.getCurrentSession();t
 
         return null;
     }
