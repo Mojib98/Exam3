@@ -58,4 +58,23 @@ public class Doctor extends BaseClass{
         this.endWork = endWork;
         this.clinicSet = clinicSet;
     }
+
+    public Doctor(Integer id, String name, String specialty, LocalTime startWork, LocalTime endWork) {
+        super(id);
+        this.name = name;
+        this.specialty = specialty;
+        this.startWork = startWork;
+        this.endWork = endWork;
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor{\t" + super.toString()+
+                "\tname='" + name + '\'' +
+                "\t, specialty='" + specialty + '\'' +
+                "\t, capacity=" + capacity +
+                "\t, startWork=" + startWork +
+                "\t, endWork=" + endWork +
+                "} " ;
+    }
 }

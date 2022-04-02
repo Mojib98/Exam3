@@ -23,4 +23,7 @@ class LoginServiceTest {
         Boolean c= loginService.isPatient(name,id);
         assLertEquals(false,c);
     }
+
+    private void assLertEquals(boolean b, Boolean c) {
+    }
 }

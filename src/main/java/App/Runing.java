@@ -9,7 +9,7 @@ public class Runing {
         while (true){
             try {
                 System.out.println("\t\tfor sing up insert 1\n" +
-                        "for login app insert 2");
+                        "\t\tfor login app insert 2");
                 int se= scanner.nextInt();
                 switch (se){
                     case 1:
@@ -20,6 +20,7 @@ public class Runing {
 
             }catch (Exception e){
                 e.printStackTrace();
+                scanner.reset();
                 continue;
             }
         }

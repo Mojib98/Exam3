@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import repository.patientRepo;
 import service.imp.SessionFactorySingleton;
 
+import java.util.Collections;
 import java.util.List;
 
 public class PatientRepo implements patientRepo {
@@ -54,9 +55,9 @@ public class PatientRepo implements patientRepo {
     public List<Doctor> allDoctor() {
         List<Doctor> list=null;
         var session = sessionFactory.getCurrentSession();
-        String hql="select d.id,d.name,d.startWork,d.endWork,d.specialty from Doctor d";
+        String hql="select new Doctor (d.id,d.name,d.specialty,d.startWork,d.endWork) from Doctor d";
         var query=session.createQuery(hql,Doctor.class);
-        list=query.getResultList();
+        list= query.getResultList();
         return list;
     }
 
@@ -116,7 +117,8 @@ public class PatientRepo implements patientRepo {
     public List<Visit> myVisit(Integer id){
         List<Visit> list = null;
         var session = sessionFactory.getCurrentSession();
-        String hql = "From Entity.Visit d " +
+        String hql = "select new Visit(d.id,d.patient.name ,d.doctor.name,d.time)" +
+                "  From Visit d " +
                 " where d.patient.id=:id";
         var query = session.createQuery(hql,Visit.class);
         query.setParameter("id",id);

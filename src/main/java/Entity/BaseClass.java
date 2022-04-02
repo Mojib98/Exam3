@@ -17,4 +17,10 @@ public abstract class BaseClass {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Override
+    public String toString() {
+        return
+                "\tid=" + id +
+                '}';
+    }
 }
