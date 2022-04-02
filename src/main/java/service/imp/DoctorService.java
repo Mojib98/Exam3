@@ -7,10 +7,11 @@ import org.hibernate.SessionFactory;
 import repository.imp.DoctorRepository;
 
 import java.util.List;
+
 @Setter
-public class DoctorService {
-  private  final   SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
-   private final repository.DoctorRepository doctorRepository = new DoctorRepository();
+public class DoctorService implements service.DoctorService {
+    private final SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
+    private final repository.DoctorRepository doctorRepository = new DoctorRepository();
     private Integer id;
 
     public List<Visit> seeVisit() {
@@ -19,7 +20,7 @@ public class DoctorService {
             var t = session.getTransaction();
             try {
                 t.begin();
-                list=doctorRepository.seeVisit(this.id);
+                list = doctorRepository.seeVisit(this.id);
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -49,7 +50,7 @@ public class DoctorService {
             var t = session.getTransaction();
             try {
                 t.begin();
-                list=doctorRepository.seePrescription(this.id);
+                list = doctorRepository.seePrescription(this.id);
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -73,7 +74,7 @@ public class DoctorService {
         }
     }
 
-    private void deleteVisit(int id) {
+    public void deleteVisit(int id) {
         Prescription prescription = new Prescription();
         prescription.setId(id);
         prescription.setExpired(false);
@@ -81,7 +82,7 @@ public class DoctorService {
             var t = session.getTransaction();
             try {
                 t.begin();
-               doctorRepository.modifyPrescription(prescription);
+                doctorRepository.modifyPrescription(prescription);
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();

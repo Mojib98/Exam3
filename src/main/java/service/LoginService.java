@@ -7,43 +7,45 @@ import repository.LoginRepository;
 import service.imp.SessionFactorySingleton;
 
 public class LoginService {
-    SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
-    LoginRepository loginRepository = new LoginRepository();
-    public Boolean isDoctor(String name,Integer id){
-        Doctor doctor=null;
+    private final SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
+    private LoginRepository loginRepository = new LoginRepository();
+
+    public Boolean isDoctor(String name, Integer id) {
+        Doctor doctor = null;
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
             try {
                 t.begin();
-                doctor=loginRepository.doctor(name,id);
+                doctor = loginRepository.doctor(name, id);
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();
                 t.rollback();
             }
         }
-        if (doctor !=null){
+        if (doctor != null) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
-    public boolean isPatient(String name ,Integer id){
-        Patient patient=null;
+
+    public boolean isPatient(String name, Integer id) {
+        Patient patient = null;
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
             try {
                 t.begin();
-                patient = loginRepository.patient(name,id);
+                patient = loginRepository.patient(name, id);
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();
                 t.rollback();
             }
         }
-        if (patient !=null){
+        if (patient != null) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }

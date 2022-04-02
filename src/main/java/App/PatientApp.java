@@ -4,6 +4,7 @@ import Entity.Clinic;
 import Entity.Doctor;
 import Entity.Patient;
 import Entity.Visit;
+import service.PatientInterface;
 import service.imp.PatientService;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.Scanner;
 
 public class PatientApp {
     private Integer idP;
-    PatientService patientService = new PatientService();
+    PatientInterface patientService = new PatientService();
     Scanner scanner = new Scanner(System.in);
 
     public void singUp() {

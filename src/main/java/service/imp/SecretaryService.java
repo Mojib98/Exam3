@@ -9,8 +9,9 @@ import java.time.LocalTime;
 import java.util.List;
 
 public class SecretaryService implements secretary {
-    SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
-    SecretaryRepository secretaryRepository = new SecretaryRepository();
+    private final SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
+    private final SecretaryRepository secretaryRepository = new SecretaryRepository();
+
     @Override
     public void add(BaseClass baseClass) {
         try (var session = sessionFactory.getCurrentSession()) {
@@ -25,6 +26,7 @@ public class SecretaryService implements secretary {
             }
         }
     }
+
     @Override
     public void modify(BaseClass baseClass) {
         try (var session = sessionFactory.getCurrentSession()) {
@@ -38,6 +40,7 @@ public class SecretaryService implements secretary {
             }
         }
     }
+
     @Override
     public void delete(BaseClass baseClass) {
         try (var session = sessionFactory.getCurrentSession()) {
@@ -52,6 +55,7 @@ public class SecretaryService implements secretary {
         }
 
     }
+
     @Override
     public List<BaseClass> showAll() {
         try (var session = sessionFactory.getCurrentSession()) {
@@ -66,6 +70,7 @@ public class SecretaryService implements secretary {
         }
         return null;
     }
+
     @Override
     public void addTime(LocalTime start, LocalTime end) {
         try (var session = sessionFactory.getCurrentSession()) {
@@ -80,13 +85,14 @@ public class SecretaryService implements secretary {
         }
 
     }
+
     public List<Clinic> showAllClinic() {
         List<Clinic> list = null;
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
             try {
                 t.begin();
-                list=secretaryRepository.allClink();
+                list = secretaryRepository.allClink();
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -95,13 +101,14 @@ public class SecretaryService implements secretary {
         }
         return list;
     }
+
     public List<Patient> showAllPatient() {
         List<Patient> list = null;
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
             try {
                 t.begin();
-                list=secretaryRepository.allPatient();
+                list = secretaryRepository.allPatient();
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -110,13 +117,14 @@ public class SecretaryService implements secretary {
         }
         return list;
     }
+
     public List<Doctor> showAllDoctor() {
         List<Doctor> list = null;
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
             try {
                 t.begin();
-                list=secretaryRepository.allDoctor();
+                list = secretaryRepository.allDoctor();
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -125,7 +133,8 @@ public class SecretaryService implements secretary {
         }
         return list;
     }
-    public  List<Visit> showAllVisit() {
+
+    public List<Visit> showAllVisit() {
         List<Visit> list = null;
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
@@ -140,8 +149,9 @@ public class SecretaryService implements secretary {
         }
         return list;
     }
+
     public List<Prescription> showAllPrescription() {
-        List<Prescription> list  = null;
+        List<Prescription> list = null;
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
             try {

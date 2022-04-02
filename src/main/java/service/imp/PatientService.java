@@ -8,8 +8,8 @@ import service.PatientInterface;
 import java.util.List;
 
 public class PatientService implements PatientInterface {
-    SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
-    PatientRepo patientRepo = new PatientRepo();
+    private final SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
+    private final PatientRepo patientRepo = new PatientRepo();
 
     @Override
     public List<Clinic> allClink() {
@@ -196,7 +196,8 @@ public class PatientService implements PatientInterface {
             }
         }
     }
-    public List<Visit> myVisit(Integer id){
+
+    public List<Visit> myVisit(Integer id) {
 
         List<Visit> list = null;
         try (var session = sessionFactory.getCurrentSession()) {
@@ -212,12 +213,13 @@ public class PatientService implements PatientInterface {
         }
         return list;
     }
-    public void cancel(Integer id,Integer patientId){
+
+    public void cancel(Integer id, Integer patientId) {
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
             try {
                 t.begin();
-                patientRepo.cancel(id,patientId);
+                patientRepo.cancel(id, patientId);
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();
