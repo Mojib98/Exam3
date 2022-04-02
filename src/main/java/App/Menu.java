@@ -7,10 +7,10 @@ import java.util.Scanner;
 public class Menu {
     private Integer id;
     private String name;
-    Scanner scanner = new Scanner(System.in);
-    PatientApp patientApp = new PatientApp();
-    DoctorApp doctorApp = new DoctorApp();
-    LogingApp app = new LogingApp();
+   private Scanner scanner = new Scanner(System.in);
+   private PatientApp patientApp = new PatientApp();
+   private DoctorApp doctorApp = new DoctorApp();
+   private LogingApp app = new LogingApp();
     public void menu(){
         System.out.println("\t if admin insert 1\n" +
                 "\tif doctor insert 2\n" +

@@ -45,7 +45,7 @@ public class PatientRepo implements patientRepo {
     public List<Clinic> allClink() {
         List<Clinic> list=null;
         var session = sessionFactory.getCurrentSession();
-        String hql="select c.id,c.nameClinic  from Clinic c";
+        String hql="select new Clinic (c.id,c.nameClinic)  from Clinic c";
         var query=session.createQuery(hql,Clinic.class);
         list=query.getResultList();
         return list;
