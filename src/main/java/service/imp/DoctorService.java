@@ -9,8 +9,8 @@ import repository.imp.DoctorRepository;
 import java.util.List;
 @Setter
 public class DoctorService {
-    SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
-    DoctorRepository doctorRepository = new DoctorRepository();
+  private  final   SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
+   private final repository.DoctorRepository doctorRepository = new DoctorRepository();
     private Integer id;
 
     public List<Visit> seeVisit() {
@@ -28,8 +28,6 @@ public class DoctorService {
         }
         return list;
     }
-
-
 
     public void writePrescription(Prescription prescription) {
         try (var session = sessionFactory.getCurrentSession()) {
@@ -76,10 +74,14 @@ public class DoctorService {
     }
 
     private void deleteVisit(int id) {
+        Prescription prescription = new Prescription();
+        prescription.setId(id);
+        prescription.setExpired(false);
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
             try {
                 t.begin();
+               doctorRepository.modifyPrescription(prescription);
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();
