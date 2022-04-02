@@ -13,7 +13,7 @@ public class DoctorRepository {
     public List<Visit>  seeVisit(int id){
         List<Visit> list = null;
         var session = sessionFactory.getCurrentSession();
-        String hql = " from Entity.Visit " +
+        String hql = " select new Visit (id,patient.name,doctor.name,time) from  Visit  " +
                 "where doctor.id=:id";
         var query = session.createQuery(hql,Visit.class);
         query.setParameter("id",id);
