@@ -1,5 +1,7 @@
 package service.imp;
 
+import Entity.Doctor;
+import Entity.Patient;
 import Entity.Prescription;
 import Entity.Visit;
 import lombok.Setter;
@@ -35,7 +37,12 @@ public class DoctorService implements service.DoctorService {
             var t = session.getTransaction();
             try {
                 t.begin();
+               /* Doctor doctor = doctorRepository.findDoctor(this.id);
+                Patient patient = doctorRepository.findPatent(prescription.getPatient().getName());
+                prescription.setDoctor(doctor);
+                prescription.setPatient(patient);*/
                 doctorRepository.writePrescription(prescription);
+
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();

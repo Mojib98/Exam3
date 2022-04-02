@@ -1,5 +1,7 @@
 package repository.imp;
 
+import Entity.Doctor;
+import Entity.Patient;
 import Entity.Prescription;
 import Entity.Visit;
 import org.hibernate.SessionFactory;
@@ -12,7 +14,9 @@ public class DoctorRepository implements repository.DoctorRepository {
     public List<Visit> seeVisit(int id) {
         List<Visit> list = null;
         var session = sessionFactory.getCurrentSession();
-        String hql = " select new Visit (id,patient.name,doctor.name,time) from  Visit  " +
+        String hql = "" +
+                "from " +
+                " Entity.Visit  " +
                 "where doctor.id=:id";
         var query = session.createQuery(hql, Visit.class);
         query.setParameter("id", id);
@@ -47,5 +51,16 @@ public class DoctorRepository implements repository.DoctorRepository {
 
         //expire
 
+    }
+    public Doctor findDoctor(int id){
+        var session = sessionFactory.getCurrentSession();
+       return session.find(Doctor.class,id);
+    }
+    public Patient findPatent(String name){
+        var session = sessionFactory.getCurrentSession();
+        String hql = "from Entity.Patient where name=:name";
+        var q = session.createQuery(hql,Patient.class);
+        q.setParameter("name",name);
+        return q.uniqueResult();
     }
 }

@@ -77,4 +77,8 @@ public class Doctor extends BaseClass{
                 "\t, endWork=" + endWork +
                 "} " ;
     }
+
+    public Doctor(Integer id) {
+        super(id);
+    }
 }

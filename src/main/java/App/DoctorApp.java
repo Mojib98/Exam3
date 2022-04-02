@@ -14,6 +14,7 @@ public class DoctorApp {
     private Integer id;
     private DoctorService doctorService = new DoctorService();
     Doctor doctor;
+    Doctor doctor1=new Doctor(id);
     Scanner scanner = new Scanner(System.in);
 
     public void setId(Integer id) {
@@ -26,7 +27,7 @@ public class DoctorApp {
             List<Visit> list = doctorService.seeVisit();
 
             for (Visit v : list) {
-                System.out.println(v.getDoctor().getName() + " " + v.getPatient().getName() +
+                System.out.println(v.getId()+"  "+v.getDoctor().getName() + " " + v.getPatient().getName() +
                         " " + v.getTime());
             }
         } catch (Exception e) {
@@ -36,18 +37,19 @@ public class DoctorApp {
 
     public void writePrescription() {
         try{
-        System.out.println("select id number patient");
+        System.out.println("select id number visit");
         int idP = scanner.nextInt();
         List<Visit> list = doctorService.seeVisit();
         Patient patient = null;
         for (Visit v : list) {
-            if (v.getPatient().getId().equals(idP)) {
-                patient = v.getPatient();
+            if (v.getId().equals(idP)) {
+                System.out.println(v);
+                patient=v.getPatient();
                 doctor = v.getDoctor();
                 break;
             }
         }
-        if (doctor != null & patient != null) {
+        if (patient !=null & doctor !=null ) {
             System.out.println("insert ");
             String pre = scanner.next().trim();
             Prescription prescription = new Prescription(pre, patient, doctor, new Date(System.currentTimeMillis()), Boolean.FALSE);

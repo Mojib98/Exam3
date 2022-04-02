@@ -1,5 +1,7 @@
 package repository;
 
+import Entity.Doctor;
+import Entity.Patient;
 import Entity.Prescription;
 import Entity.Visit;
 
@@ -13,4 +15,8 @@ public interface DoctorRepository {
     List<Prescription> seePrescription(Integer id);
 
     void modifyPrescription(Prescription prescription);
+
+    Doctor findDoctor(int id);
+
+    Patient findPatent(String name);
 }

@@ -39,10 +39,10 @@ public class Visit extends BaseClass {
 
     @Override
     public String toString() {
-        return "\tVisit{" +
+        return  super.toString()+"\n\tVisit{" +
                 "\n\tdoctor=" + doctor.getName() +
                 "\n\t, patient=" + patient.getName() +
                 "\n\t, time=" + time +
-                "} \n" + super.toString();
+                "} \n" ;
     }
 }
