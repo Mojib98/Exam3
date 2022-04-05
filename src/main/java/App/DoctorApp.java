@@ -54,7 +54,9 @@ public class DoctorApp {
             String pre = scanner.next().trim();
             Prescription prescription = new Prescription(pre, patient, doctor, new Date(System.currentTimeMillis()), Boolean.FALSE);
             doctorService.writePrescription(prescription);
+            doctorService.down(idP);
         } else System.out.println("cant");
+
 
     }catch (Exception e){
             e.printStackTrace();
