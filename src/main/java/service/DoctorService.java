@@ -15,4 +15,5 @@ public interface DoctorService {
     void modifyPrescription(Prescription prescription);
 
     void deleteVisit(int id);
+    void down(Integer id);
 }

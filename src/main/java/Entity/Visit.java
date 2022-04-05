@@ -21,7 +21,7 @@ public class Visit extends BaseClass {
     @ManyToOne(fetch = FetchType.EAGER)
     private Patient patient=new Patient();
     private LocalTime time;
-    private Boolean idDone;
+    private Boolean idDone=false;
 
 
 

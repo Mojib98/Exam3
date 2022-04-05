@@ -97,6 +97,20 @@ public class DoctorService implements service.DoctorService {
             }
         }
     }
+
+    public void down(Integer id) {
+        try (var session = sessionFactory.getCurrentSession()) {
+            var t = session.getTransaction();
+            try {
+                t.begin();
+                doctorRepository.down(id);
+                t.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                t.rollback();
+            }
+        }
+    }
 }
 
 

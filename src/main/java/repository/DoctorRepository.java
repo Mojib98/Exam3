@@ -20,4 +20,5 @@ public interface DoctorRepository {
 
     Patient findPatent(String name);
     public void delete(Integer id);
+    void down(Integer id);
 }

@@ -64,4 +64,12 @@ public class DoctorRepository implements repository.DoctorRepository {
         q.setParameter("name",name);
         return q.uniqueResult();
     }
+    public void down(Integer id) {
+        var session = sessionFactory.getCurrentSession();
+        String hql="update from Entity.Visit set  idDone=true " +
+                "where id=:id";
+        session.createQuery(hql)
+                .setParameter("id",id)
+                .executeUpdate();
+    }
 }
