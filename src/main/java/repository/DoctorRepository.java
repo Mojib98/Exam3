@@ -19,4 +19,5 @@ public interface DoctorRepository {
     Doctor findDoctor(int id);
 
     Patient findPatent(String name);
+    public void delete(Integer id);
 }

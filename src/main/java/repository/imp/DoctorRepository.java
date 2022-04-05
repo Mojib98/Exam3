@@ -45,7 +45,7 @@ public class DoctorRepository implements repository.DoctorRepository {
         session.update(prescription);
     }
 
-    private void delete(Integer id) {
+    public void delete(Integer id) {
         var session = sessionFactory.getCurrentSession();
         String hql="delete from Entity.Visit " +
                 "where id=:id";

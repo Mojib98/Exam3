@@ -19,11 +19,12 @@ public class PatientApp {
             Patient patient = new Patient();
             System.out.println("please insert name");
             String name = scanner.next().trim();
+            checkName(name);
             patient.setName(name);
             patientService.add(patient);
-            //exception illegal insert
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -101,6 +102,20 @@ public class PatientApp {
     }
 
     public void doctorOfClinic(Integer id) {
+    }
+    public void checkName(String name){
+        if(name.length() < 3 )
+            throw new RuntimeException("name should be more than 2 character!");
+        for (Character ch:name.toCharArray()
+        ) {
+            if(Character.isDigit(ch))
+                throw new RuntimeException("name can not have number!");
+        }
+        for (Character ch:name.toCharArray()
+        ) {
+            if(!Character.isAlphabetic(ch))
+                throw new RuntimeException("name can't have Sign(!,@,#,%,...)");
+        }
     }
 
 }
