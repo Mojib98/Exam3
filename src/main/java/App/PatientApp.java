@@ -6,6 +6,7 @@ import Entity.Patient;
 import Entity.Visit;
 import service.PatientInterface;
 import service.imp.PatientService;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,7 +32,6 @@ public class PatientApp {
     public void seeAllDoctor() {
         try {
             List<Doctor> list = patientService.allDoctor();
-
             if (list != null) {
                 list.forEach(System.out::println);
             }
@@ -62,20 +62,22 @@ public class PatientApp {
         }
     }
 
-    public void getTime(int ids) {
-        Doctor doctor = setDoctor(ids);
-        patientService.changeTime(doctor);
+    public void getTime() {
+        System.out.println("insert id doctor");
+        int idD = scanner.nextInt();
+        Doctor doctor = setDoctor(idD);
+        doctor = patientService.changeTime(doctor);
         Patient patient = findByIdP();
         if (doctor != null) {
-            Visit visit = new Visit(doctor, patient, doctor.getStartWork().minusMinutes(15L));
+            Visit visit = new Visit(doctor, patient, doctor.getStartWork());
             patientService.giveTime(visit);
+            System.out.println("your time insert");
 
         } else System.out.println("can't");
     }
 
     public Patient findByIdP() {
-        Patient patient = patientService.findByIdP(this.idP);
-        return patient;
+        return patientService.findByIdP(this.idP);
     }
 
     public void setIdP(Integer idP) {
@@ -93,27 +95,30 @@ public class PatientApp {
         }
     }
 
-    public void cancelVisit(int cancel) {
-       try {
-           patientService.cancel(cancel,this.idP);
-       }catch (Exception e){
-           e.printStackTrace();
-       }
+    public void cancelVisit() {
+        System.out.println("please select by id");
+        Integer idVisit=scanner.nextInt();
+        try {
+            patientService.cancel(idVisit, this.idP);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void doctorOfClinic(Integer id) {
     }
-    public void checkName(String name){
-        if(name.length() < 3 )
+
+    public void checkName(String name) {
+        if (name.length() < 3)
             throw new RuntimeException("name should be more than 2 character!");
-        for (Character ch:name.toCharArray()
+        for (Character ch : name.toCharArray()
         ) {
-            if(Character.isDigit(ch))
+            if (Character.isDigit(ch))
                 throw new RuntimeException("name can not have number!");
         }
-        for (Character ch:name.toCharArray()
+        for (Character ch : name.toCharArray()
         ) {
-            if(!Character.isAlphabetic(ch))
+            if (!Character.isAlphabetic(ch))
                 throw new RuntimeException("name can't have Sign(!,@,#,%,...)");
         }
     }

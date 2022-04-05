@@ -111,17 +111,14 @@ public class Menu {
 
                 case 4:
                     patientApp.seeAllDoctor();
-                    System.out.println("insert id doctor");
-                    int idD=scanner.nextInt();
-                    patientApp.getTime(idD);
+
+                    patientApp.getTime();
                 case 5:
                     patientApp.myVisit();
                     break;
                 case 6:
                     patientApp.myVisit();
-                    System.out.println("please select by id");
-                    int cancel=scanner.nextInt();
-                    patientApp.cancelVisit(cancel);
+                    patientApp.cancelVisit();
                 case 7:
                 case 8:
                     isRun=false;

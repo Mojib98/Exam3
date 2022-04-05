@@ -150,7 +150,8 @@ public class PatientService implements PatientInterface {
         if (doctor.getStartWork().isBefore(doctor.getEndWork())) {
             doctor.changeTime();
             chaneDoctorTime(doctor);
-        } else System.out.println("Time full");
+            return doctor;
+        } else
         return null;
     }
 
