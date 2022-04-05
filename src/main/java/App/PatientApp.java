@@ -6,7 +6,6 @@ import Entity.Patient;
 import Entity.Visit;
 import service.PatientInterface;
 import service.imp.PatientService;
-
 import java.util.List;
 import java.util.Scanner;
 

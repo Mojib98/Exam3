@@ -11,6 +11,6 @@ public interface Service<T extends BaseClass> {
 
     void delete(T t);
 
-    List<T> showAll();
+
 
 }

@@ -57,21 +57,6 @@ public class SecretaryService implements secretary {
     }
 
     @Override
-    public List<BaseClass> showAll() {
-        try (var session = sessionFactory.getCurrentSession()) {
-            var t = session.getTransaction();
-            try {
-                t.begin();
-                t.commit();
-            } catch (Exception e) {
-                e.printStackTrace();
-                t.rollback();
-            }
-        }
-        return null;
-    }
-
-    @Override
     public void addTime(LocalTime start, LocalTime end) {
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();

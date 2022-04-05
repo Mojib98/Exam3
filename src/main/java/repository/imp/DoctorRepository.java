@@ -14,9 +14,7 @@ public class DoctorRepository implements repository.DoctorRepository {
     public List<Visit> seeVisit(int id) {
         List<Visit> list = null;
         var session = sessionFactory.getCurrentSession();
-        String hql = "" +
-                "from " +
-                " Entity.Visit  " +
+        String hql = "from  Entity.Visit  " +
                 "where doctor.id=:id";
         var query = session.createQuery(hql, Visit.class);
         query.setParameter("id", id);
@@ -47,10 +45,13 @@ public class DoctorRepository implements repository.DoctorRepository {
         session.update(prescription);
     }
 
-    private void delete() {
-
-        //expire
-
+    private void delete(Integer id) {
+        var session = sessionFactory.getCurrentSession();
+        String hql="delete from Entity.Visit " +
+                "where id=:id";
+        session.createQuery(hql)
+                .setParameter("id",id)
+                .executeUpdate();
     }
     public Doctor findDoctor(int id){
         var session = sessionFactory.getCurrentSession();

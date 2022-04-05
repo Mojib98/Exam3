@@ -128,20 +128,6 @@ public class PatientService implements PatientInterface {
 
     }
 
-    @Override
-    public List<Patient> showAll() {
-        try (var session = sessionFactory.getCurrentSession()) {
-            var t = session.getTransaction();
-            try {
-                t.begin();
-                t.commit();
-            } catch (Exception e) {
-                e.printStackTrace();
-                t.rollback();
-            }
-        }
-        return null;
-    }
 
     public Doctor findById(Integer id) {
         Doctor doctor = null;

@@ -16,26 +16,27 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PatientServiceTest {
-   static Patient patient;
-   static Clinic clinic;
-   static PatientService patientService;
+    static Patient patient;
+    static Clinic clinic;
+    static PatientService patientService;
     static SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
 
 
     @BeforeAll
-    void insert(){
-        patient =new Patient(null,"JackM2",null);
-        clinic =new Clinic(null,"testClinic");
+   static void insert() {
+        patient = new Patient(null, "JackM2", null);
+        clinic = new Clinic(null, "testClinic");
         patientService = new PatientService();
     }
+
     @BeforeEach
-    void adding(){
+    void adding() {
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
             try {
                 t.begin();
-               session.save(patient);
-               session.save(clinic);
+                session.save(patient);
+                session.save(clinic);
                 t.commit();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -43,8 +44,9 @@ class PatientServiceTest {
             }
         }
     }
+
     @AfterEach
-    void removingData(){
+    void removingData() {
         try (var session = sessionFactory.getCurrentSession()) {
             var t = session.getTransaction();
             try {
@@ -63,14 +65,14 @@ class PatientServiceTest {
 
     @Test
     void allClink() {
-        List<Clinic> list=null;
+        List<Clinic> list = null;
         list = patientService.allClink();
         assertNotNull(list);
     }
 
     @Test
     void allDoctor() {
-        List<Doctor> list=null;
+        List<Doctor> list = null;
         list = patientService.allDoctor();
         assertNotNull(list);
     }
@@ -85,6 +87,10 @@ class PatientServiceTest {
 
     @Test
     void add() {
+      this.patient = new Patient(null, "JackM_2", null);
+        patientService.add(patient);
+        Patient patient1=patientService.findByIdP(patient.getId());
+        assertNotNull(patient1);
     }
 
     @Test
